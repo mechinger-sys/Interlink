@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="heading">    
+    <h1>Welcome to Interlink</h1>
+    <h2>Please sign in to look at your projects.</h2>
+</div>    
+    <a class= link href="login"> Sign in</a>
+    
+    <style>
+    
+        .heading{
+            margin-left: 100px;
+            font-size: 120px
+            
+        }
+        .link{
+           margin-left: 850px;
+        font-size: 30px;
+    }
+        .link{   
+           color:#1f1c2c }
+        body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        color: #ffffff;
+
+        /* Modern gradient background */
+        background: linear-gradient(135deg, #1f1c2c 0%, #928dab 50%, #6a11cb 100%);
+        background-size: 400% 400%;
+
+        /* Smooth animated gradient */
+        animation: gradientAnimation 15s ease infinite;
+
+        /* Optional subtle overlay for texture */
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Gradient animation */
+    @keyframes gradientAnimation {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    /* Optional floating shapes for depth */
+    .floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.2;
+        animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0) translateX(0) rotate(0deg);}
+        50% { transform: translateY(-50px) translateX(100px) rotate(180deg);}
+        100% { transform: translateY(0) translateX(0) rotate(360deg);}
+    }
+
+    /* Example text styling */
+    h1, h2, h3, p {
+        text-align: center;
+        
+    </style>
+
+
+{% endblock %}

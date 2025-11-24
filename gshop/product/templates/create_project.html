@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        color: #333;
+        margin-bottom: 10px;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #999;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .newproject {
+        margin-bottom: 30px;
+    }
+
+    .newproject form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .newproject input,
+    .newproject textarea {
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: Arial, sans-serif;
+        transition: border-color 0.3s ease;
+    }
+
+    .newproject input:focus,
+    .newproject textarea:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
+    .newproject textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .newproject button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .newproject button:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .newproject button:active {
+        transform: translateY(0);
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .link-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .link {
+        display: inline-block;
+        background: #f0f0f0;
+        color: #333;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.3s ease;
+    }
+
+    .link:hover {
+        background: #e0e0e0;
+    }
+
+    .second-part {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+
+    .second-part p {
+        color: #666;
+        font-size: 1.1rem;
+    }
+</style>
+
+<div class="container">
+    <h1>✨ Create a Project</h1>
+    <p class="subtitle">Start building something amazing</p>
+ 
+        <div class="newproject">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Create Project</button>
+            </form>
+        </div>
+    
+   
+
+    <div class="link-container">
+        <a class="link" href="{% url 'projects' %}">← Back to Your Projects</a>
+    </div>
+</div>
+
+{% endblock %}

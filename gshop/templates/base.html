@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="Interlink" content="A project that use to communicate with others wherever, whenever.">
+    <title>Interlink</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        navbar-brand {
+            margin-right: -10;
+        }
+
+    </style>    
+</head>
+
+
+<body>
+      <nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+  </div>
+</nav>
+
+<!-- As a heading -->
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    {% if is_valid %}
+      <a class="navbar-brand" href="{% url 'create_project' %}">Create a new project</a>
+      <a class="navbar-brand" href="{% url 'projects' %}">Go to your projects</a>
+      <a class="navbar-brand" href="{% url 'invites' %}">You have Zero Invites</a>
+    {% else %}
+      <span class="navbar-brand mb-0 h1">No projects</span>
+    {% endif %}
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </div>
+</nav> 
+        {% block content %}
+        {% endblock %} 
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+
+
+

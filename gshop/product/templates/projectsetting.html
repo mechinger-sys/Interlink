@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 40px 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .settings-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        color: #999;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+
+    .project-info {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .info-item {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-item label {
+        font-weight: 600;
+        color: #667eea;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    .info-item p {
+        color: #333;
+        font-size: 1rem;
+        word-break: break-word;
+        padding: 10px;
+        background: white;
+        border-radius: 6px;
+        border-left: 3px solid #667eea;
+    }
+
+    .project-image {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.3s ease, transform 0.2s ease;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-delete {
+        background: #ff6b6b;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .btn-back {
+        background: #f0f0f0;
+        color: #333;
+    }
+
+    .btn-back:hover {
+        background: #e0e0e0;
+    }
+
+    .delete-warning {
+        background: #fff3cd;
+        border-left: 4px solid #ff6b6b;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        color: #856404;
+    }
+
+    form {
+        margin: 0;
+    }
+</style>
+
+<div class="settings-container">
+    <h1>⚙️ Project Settings</h1>
+    <h2>Manage your project information</h2>
+
+    <div class="project-info">
+        {% if project.image %}
+            <img src="{{ project.image }}" alt="{{ project.name }}" class="project-image">
+        {% else %}
+            <div style="width: 100%; height: 200px; background: #e0e0e0; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #999;">
+                No image
+            </div>
+        {% endif %}
+
+        <div class="info-item">
+            <label>📝 Project Name</label>
+            <p>{{ project.name }}</p>
+        </div>
+
+        <div class="info-item">
+            <label>📋 Description</label>
+            <p>{{ project.description }}</p>
+        </div>
+
+        <div class="info-item">
+            <label>🖼️ Image URL</label>
+            <p>{{ project.image|default:"No image URL provided" }}</p>
+        </div>
+    </div>
+
+    <div class="delete-warning">
+        <strong>⚠️ Warning:</strong> Deleting this project will remove all associated data and messages.
+    </div>
+
+    <div class="actions">
+        <a href="{% url 'projects' %}" class="btn btn-back">← Back to Projects</a>
+        <form method="post" style="flex: 1;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-delete" style="width: 100%;">🗑️ Delete Project</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

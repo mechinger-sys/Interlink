@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        padding: 40px;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        text-align: center;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #999;
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .login form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .login input,
+    .login textarea {
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .login input:focus,
+    .login textarea:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
+    .login label {
+        display: block;
+        margin-bottom: 6px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    .text {
+        color: #333;
+        font-size: 1.1rem;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .text a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .text a:hover {
+        color: #764ba2;
+    }
+
+    .welcome-message {
+        background: #f0f8ff;
+        border-left: 4px solid #667eea;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    .welcome-message p {
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .welcome-message a {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.3s ease;
+    }
+
+    .welcome-message a:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="login-container">
+    <h1>🔐 Login</h1>
+    <p class="subtitle">Enter your username to continue</p>
+
+    <div class="login">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    {% if approval %}
+        <div class="welcome-message">
+            <p>✅ Welcome, <strong>{{ username }}</strong>!</p>
+            {% if appear %}
+                <a href="{% url 'projects' %}">Go to Your Projects →</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <p class="text">Please log in to continue.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+
+
